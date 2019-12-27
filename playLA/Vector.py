@@ -62,8 +62,12 @@ class Vector:
             raise ZeroDivisionError("Normalize error,vector norm is zero!")
         return (1 / self.norm()) * self
 
+    def underlying_list(self):
+        return self._values[:]
+
 if __name__ == '__main__':
 
+    pass
     # u = Vector([1,2,3])
     # print(u)
     # print(len(u))
@@ -86,7 +90,14 @@ if __name__ == '__main__':
     # zero_vec = Vector.zero(2)
     # print(zero_vec.normalize())
 
-    vec1 = Vector([1,2,3])
-    vec2 = Vector([2,3,4])
+    # vec1 = Vector([1,2,3])
+    # vec2 = Vector([2,3,4])
+    #
+    #
+    # print(vec1.dot(vec2))
 
-    print(vec1.dot(vec2))
+    # lst = [1,2,3,4]
+    # lst2 = lst[:]
+    #
+    # lst2[0] = 0
+    # pass

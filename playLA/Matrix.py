@@ -6,7 +6,15 @@ class Matrix:
     @classmethod
     def zero(cls,row,col):
 
-        return Matrix([[0] * col] * row)
+        return cls([[0] * col] * row)
+    @classmethod
+    def identity(cls,n):
+        lst2d =  [[0] * n for i in range(n)]
+
+        for i in range(n):
+            lst2d[i][i] = 1
+
+        return cls(lst2d)
 
     def __init__(self,list2d):
         self._values = [row[:] for row in list2d]
@@ -28,7 +36,7 @@ class Matrix:
         return self.row_num() * self.col_num()
 
     def __getitem__(self, pos):
-        row,col = pos
+        (row,col) = pos
         return self._values[row][col]
 
     def row_vector(self,index):
@@ -83,35 +91,48 @@ class Matrix:
             pass
         else:
             print("Error in Matrix dot.")
+
+    def T(self):
+        return Matrix([self.col_vector(i)._values for i in range(self.col_num())])
+
 if __name__ == '__main__':
-    mat1 = Matrix([[1,2,3],[4,5,6]])
-    # print(mat1)
-    # print(mat1.row_num())
-    # print(mat1.col_num())
-    # print(mat1.shape())
-    # print(mat1.size())
+    # mat1 = Matrix([[1,2,3],[4,5,6]])
+    # # print(mat1)
+    # # print(mat1.row_num())
+    # # print(mat1.col_num())
+    # # print(mat1.shape())
+    # # print(mat1.size())
+    # #
+    # # print(mat1[1,2])
+    # #
+    # # print(mat1.row_vector(1))
+    # # print(mat1.col_vector(2))
     #
-    # print(mat1[1,2])
+    # mat2 = Matrix([[2,4,6],[8,10,15]])
     #
-    # print(mat1.row_vector(1))
-    # print(mat1.col_vector(2))
+    # print(mat1 + mat2)
+    #
+    # print(mat2 - mat1)
+    #
+    # print(mat1 * 2)
+    # print(mat1 / 2)
+    #
+    # print(Matrix.zero(2,3))
+    #
+    # vec = Vector([1,2,3])
+    # print(mat1.dot(vec))
+    #
+    # mat3 = Matrix([[4,3],
+    #                [2,1],
+    #                [6,5]])
+    #
+    # print(mat1.dot(mat3))
 
-    mat2 = Matrix([[2,4,6],[8,10,15]])
+    mat4 = Matrix([[1,2,3],[4,5,6]])
+    print(mat4)
+    print(mat4.T())
 
-    print(mat1 + mat2)
+    identity = Matrix.identity(3)
+    print(identity)
 
-    print(mat2 - mat1)
-
-    print(mat1 * 2)
-    print(mat1 / 2)
-
-    print(Matrix.zero(2,3))
-
-    vec = Vector([1,2,3])
-    print(mat1.dot(vec))
-
-    mat3 = Matrix([[4,3],
-                   [2,1],
-                   [6,5]])
-
-    print(mat1.dot(mat3))
+    print(mat4.dot(identity))

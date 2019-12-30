@@ -136,3 +136,6 @@ if __name__ == '__main__':
     print(identity)
 
     print(mat4.dot(identity))
+
+
+    print('mac test')
